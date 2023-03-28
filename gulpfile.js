@@ -2,15 +2,13 @@ const { series, src, dest, watch } = require("gulp");
 const browserSync = require("browser-sync");
 const del = require("del");
 const cache = require("gulp-cache");
-const sass = require('gulp-sass')(require('sass'));
+const sass = require("gulp-sass")(require("sass"));
 const autoprefixer = require("gulp-autoprefixer");
 const sourcemaps = require("gulp-sourcemaps");
 
 function browser_sync(done) {
   browserSync.init({
-    watch: true,
-    server: { baseDir: "src" },
-    port: 5000,
+    server: { baseDir: "./src" },
   });
   done();
 }
@@ -27,14 +25,16 @@ function images() {
 
 function scss() {
   return src("src/assets/scss/**/*.scss")
-    .pipe(sass({
-      outputStyle: "expanded",
-      includePaths: ["node_modules/gerillass/scss"]
-    }).on("error", sass.logError))
+    .pipe(
+      sass({
+        outputStyle: "expanded",
+        includePaths: ["node_modules/gerillass/scss"],
+      }).on("error", sass.logError)
+    )
     .pipe(autoprefixer({ cascade: true }))
     .pipe(sourcemaps.write())
     .pipe(dest("src/assets/css"))
-    .pipe(browserSync.stream())
+    .pipe(browserSync.stream());
 }
 
 function css() {
@@ -64,17 +64,5 @@ function watch_files(done) {
   done();
 }
 
-exports.start = series(
-  clear_cache,
-  browser_sync,
-  scss,
-  watch_files
-);
-exports.build = series(
-  clean_dist,
-  js,
-  scss,
-  css,
-  images,
-  html
-);
+exports.start = series(clear_cache, browser_sync, scss, watch_files);
+exports.build = series(clean_dist, js, scss, css, images, html);
