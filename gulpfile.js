@@ -9,6 +9,7 @@ const sourcemaps = require("gulp-sourcemaps");
 function browser_sync(done) {
   browserSync.init({
     server: { baseDir: "./src" },
+    open: false,
   });
   done();
 }
