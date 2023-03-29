@@ -5,7 +5,7 @@
 @include reset-css;
 
 html {
-  position :relative;
+  position: relative;
   font-size: 110%;
   background-color: #fff;
 }
@@ -18,7 +18,12 @@ body {
   @include adaptive(2rem);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: bold;
   margin-bottom: 1rem;
 }
@@ -51,12 +56,18 @@ p {
   padding: 2rem;
 }
 .card-list {
-  @include columnizer(4, 20px, true);
+  @include columnizer(1, 20px, true);
+  @include breakpoint(min, medium) {
+    @include columnizer(2, 20px, true);
+  }
+  @include breakpoint(min, large) {
+    @include columnizer(4, 20px, true);
+  }
   &__item {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(245,245,245);
+    background-color: rgb(245, 245, 245);
     border-radius: 4px;
     @include ratio-box("16:6");
   }
