@@ -11,7 +11,7 @@
     "start": {
       "name": "start",
       "command": "npm start",
-      "runAtStart": false
+      "runAtStart": true
     }
   }
 }
