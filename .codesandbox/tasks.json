@@ -10,8 +10,13 @@
   "tasks": {
     "start": {
       "name": "start",
-      "command": "npm start",
+      "command": "yarn start",
       "runAtStart": true
+    },
+    "dev": {
+      "name": "dev",
+      "command": "yarn dev",
+      "runAtStart": false
     }
   }
 }
