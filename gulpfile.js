@@ -10,6 +10,7 @@ function browser_sync(done) {
   browserSync.init({
     server: { baseDir: "./src" },
     open: false,
+    port: 3000,
   });
   done();
 }
